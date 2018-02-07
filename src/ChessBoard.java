@@ -4,6 +4,9 @@ public class ChessBoard {
 
     private Tile[][] tiles;
 
+    final Player playerBlack = new Player(Color.BLACK);
+    final Player playerWhite = new Player(Color.WHITE);
+
     final int NUMBEROFROWS = 8;
     final int NUMBEROFCOLUMNS = 8;
 
@@ -28,14 +31,12 @@ public class ChessBoard {
     }
 
     public void setPiecesOnBoard(){
-
         for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
-            new Pawn(Color.WHITE, tiles[1][column]);
+            playerWhite.pieces.get(column).setCurrentTile(tiles[1][column]);
         }
 
         for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
-            new Pawn(Color.BLACK, tiles[6][column]);
+            playerBlack.pieces.get(column).setCurrentTile(tiles[6][column]);
         }
-
     }
 }

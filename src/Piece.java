@@ -6,14 +6,24 @@ public abstract class Piece {
     Tile currentTile;
     ImageIcon icon;
 
+    boolean moveIsValid(Move move){
+
+        return false;
+    };
+
     public Piece(){
         this.color = null;
         this.currentTile = null;
     }
 
-    public Piece(Color color, Tile currentTile){
+    public Piece(Color color){
         this.color = color;
-        this.currentTile = currentTile;
+
+    }
+
+
+    public Tile getCurrentTile() {
+        return currentTile;
     }
 
     public Color getColor() {
@@ -22,5 +32,10 @@ public abstract class Piece {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setCurrentTile(Tile tile) {
+        this.currentTile = tile;
+
     }
 }
