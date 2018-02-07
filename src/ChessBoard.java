@@ -10,6 +10,7 @@ public class ChessBoard {
     public ChessBoard() {
         tiles = new Tile[8][8];
         createTiles();
+        setPiecesOnBoard();
     }
 
     public Tile[][] getTiles() {
@@ -24,5 +25,17 @@ public class ChessBoard {
                 tiles[row][col] = new Tile();
             }
         }
+    }
+
+    public void setPiecesOnBoard(){
+
+        for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
+            new Pawn(Color.WHITE, tiles[1][column]);
+        }
+
+        for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
+            new Pawn(Color.BLACK, tiles[6][column]);
+        }
+
     }
 }
