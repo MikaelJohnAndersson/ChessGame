@@ -1,15 +1,11 @@
 import javax.swing.*;
 
-public abstract class Piece {
+public abstract class Piece implements Moveable{
 
     Color color;
     Tile currentTile;
     ImageIcon icon;
 
-    boolean moveIsValid(Move move){
-
-        return false;
-    };
 
     public Piece(){
         this.color = null;
@@ -21,21 +17,14 @@ public abstract class Piece {
 
     }
 
-
-    public Tile getCurrentTile() {
-        return currentTile;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public void setCurrentTile(Tile tile) {
         this.currentTile = tile;
 
     }
+
+    public void move(Tile toTile) {
+        this.setCurrentTile(toTile);
+    }
+
+
 }

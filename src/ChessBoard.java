@@ -25,7 +25,7 @@ public class ChessBoard {
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
                 //Creating tile
-                tiles[row][col] = new Tile();
+                tiles[row][col] = new Tile(row, col);
             }
         }
     }
