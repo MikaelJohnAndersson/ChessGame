@@ -9,14 +9,14 @@ public class ChessBoard {
 
     public ChessBoard() {
         tiles = new Tile[8][8];
-        setTiles();
+        createTiles();
     }
 
     public Tile[][] getTiles() {
         return tiles;
     }
 
-    public void setTiles(){
+    public void createTiles(){
         for(int row = 0; row < NUMBEROFROWS; row++) {
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
