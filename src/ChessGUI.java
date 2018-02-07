@@ -52,11 +52,7 @@ public class ChessGUI extends JFrame {
                 if (pB instanceof Pawn) {
                     pB.currentTile.setIcon(blackPawn);
                 }
-
             }
-
         }
-
-
     }
 }
