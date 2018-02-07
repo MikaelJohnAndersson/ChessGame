@@ -1,54 +1,28 @@
 
-import javax.swing.*;
-import java.awt.*;
 
-public class ChessBoard extends JFrame{
+public class ChessBoard {
 
-    private final int TILESIZE = 75;
-    private final int NUMBEROFROWS = 8;
-    private final int NUMBEROFCOLUMNS = 8;
     private Tile[][] tiles;
 
+    final int NUMBEROFROWS = 8;
+    final int NUMBEROFCOLUMNS = 8;
 
-    public ChessBoard() throws HeadlessException {
-        super();
-        setResizable(false);
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+    public ChessBoard() {
+        tiles = new Tile[8][8];
         setTiles();
-        pack();
-
     }
 
-    private void setTiles(){
+    public Tile[][] getTiles() {
+        return tiles;
+    }
 
-        //Creating array of tiles
-        tiles = new Tile[8][8];
-
-        //Creating panel to hold tiles
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(NUMBEROFROWS, NUMBEROFCOLUMNS));
-        panel.setPreferredSize(new Dimension(NUMBEROFCOLUMNS * TILESIZE, NUMBEROFROWS * TILESIZE));
-
+    public void setTiles(){
         for(int row = 0; row < NUMBEROFROWS; row++) {
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
                 //Creating tile
                 tiles[row][col] = new Tile();
-
-                //Changing color if tile is black
-                if((row + col) % 2 != 0)
-                tiles[row][col].setBackground(Color.DARK_GRAY);
-
-                //Adding tile to panel
-                panel.add(tiles[row][col]);
             }
         }
-        //Adding panel to JFrame
-        add(panel);
     }
-
-
-
 }
