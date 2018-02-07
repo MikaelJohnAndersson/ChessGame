@@ -11,4 +11,23 @@ public class Player {
 
         }
     }
+
+    public void makeMove(Tile toTile){
+
+        Piece piece;
+        while (true) {
+            piece = pickPiece();
+            if (piece.isMovable(toTile)) {
+                piece.move(toTile);
+                break;
+            }
+        }
+    }
+
+    public Piece pickPiece(){
+
+        Random random = new Random();
+        return pieces.get(random.nextInt(pieces.size()));
+    }
+
 }
