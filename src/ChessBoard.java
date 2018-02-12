@@ -31,12 +31,18 @@ public class ChessBoard {
     }
 
     public void setPiecesOnBoard(){
+        //Setting pawns for white
         for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
-            playerWhite.pieces.get(column).setCurrentTile(tiles[1][column]);
+            Piece piece = playerWhite.pieces.get(column);
+            tiles[1][column].setPiece(piece);
+            piece.setPosition(tiles[1][column]);
         }
 
+        //Setting pawns for black
         for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
-            playerBlack.pieces.get(column).setCurrentTile(tiles[6][column]);
+            Piece piece = playerBlack.pieces.get(column);
+            tiles[6][column].setPiece(piece);
+            piece.setPosition(tiles[6][column]);
         }
     }
 }

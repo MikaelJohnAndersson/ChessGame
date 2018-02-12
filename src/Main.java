@@ -6,9 +6,25 @@ public class Main {
         ChessGUI chessGUI = new ChessGUI(board);
 
 
-        board.playerBlack.makeMove(board.getTiles()[5][6]);
-        board.playerWhite.makeMove(board.getTiles()[2][2]);
-        chessGUI.renderPieces(board);
+        while (true) {
+            board.playerWhite.makeMove(board);
+            chessGUI.renderPieces(board);
+
+            try {
+                Thread.sleep(500);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
+            board.playerBlack.makeMove(board);
+            chessGUI.renderPieces(board);
+
+            try {
+                Thread.sleep(500);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
 
 
     }

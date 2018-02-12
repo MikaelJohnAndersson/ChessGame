@@ -6,8 +6,6 @@ import java.awt.Color;
 public class ChessGUI extends JFrame {
 
     private final int TILESIZE = 75;
-    ImageIcon whitePawn = new ImageIcon("Resources/white-pawn.png");
-    ImageIcon blackPawn = new ImageIcon("Resources/black-pawn.png");
 
     public ChessGUI(ChessBoard board) throws HeadlessException {
         super();
@@ -43,14 +41,17 @@ public class ChessGUI extends JFrame {
     }
 
     void renderPieces(ChessBoard chessBoard) {
-        for (Piece p : chessBoard.playerWhite.pieces) {
-            if (p instanceof Pawn) {
-                p.currentTile.setIcon(whitePawn);
-            }
 
-            for (Piece pB : chessBoard.playerBlack.pieces) {
-                if (pB instanceof Pawn) {
-                    pB.currentTile.setIcon(blackPawn);
+        for(Tile[] row : chessBoard.getTiles()){
+            for (Tile column : row){
+               column.setIcon(null);
+            }
+        }
+
+        for(Tile[] row : chessBoard.getTiles()){
+            for (Tile column : row){
+                if (column.hasPiece()){
+                    column.setIcon(column.piece.icon);
                 }
             }
         }
