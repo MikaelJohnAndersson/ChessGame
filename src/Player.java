@@ -24,7 +24,7 @@ public class Player {
 
         for(Move move : possibleMoves){
             if(move.toTile.hasPiece()) {
-                if (move.toTile.hasEnemyPiece(this)) {
+                if (move.toTile.hasEnemyPiece(this.color)) {
                     bestMoves.add(move);
                 }
             }

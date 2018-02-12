@@ -21,11 +21,16 @@ public class Pawn extends Piece {
     @Override
     public boolean isMovable(Move move) {
 
-        if(color == Color.BLACK && move.isOneStepUp()){
-            return true;
-        }
+        if(!move.toTile.hasPiece()) {
+            if (color == Color.BLACK && move.isOneStepUp()) {
+                return true;
+            }
 
-        if(color == Color.WHITE && move.isOneStepDown()){
+            if (color == Color.WHITE && move.isOneStepDown()) {
+                return true;
+            }
+        }
+        else if (move.toTile.hasEnemyPiece(this.color) && ){
             return true;
         }
 

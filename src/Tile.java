@@ -29,9 +29,9 @@ public class Tile extends JButton {
         return piece != null;
     }
 
-    public boolean hasEnemyPiece(Player player){
+    public boolean hasEnemyPiece(Color color){
 
-        return player.color != piece.color;
+        return color != piece.color;
     }
 
 }
