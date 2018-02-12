@@ -22,6 +22,15 @@ public class Pawn extends Piece {
     public boolean isMovable(Move move) {
 
         if(!move.toTile.hasPiece()) {
+            if (color == Color.BLACK && move.isOneStepUp() && move.isVertical()) {
+                return true;
+            }
+
+            if (color == Color.WHITE && move.isOneStepDown() && move.isVertical()) {
+                return true;
+            }
+        }
+        else if (move.toTile.hasEnemyPiece(this.color) && move.isDiagonal()){
             if (color == Color.BLACK && move.isOneStepUp()) {
                 return true;
             }
@@ -29,9 +38,6 @@ public class Pawn extends Piece {
             if (color == Color.WHITE && move.isOneStepDown()) {
                 return true;
             }
-        }
-        else if (move.toTile.hasEnemyPiece(this.color) && ){
-            return true;
         }
 
         return false;

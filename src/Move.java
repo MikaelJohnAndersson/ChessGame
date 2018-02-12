@@ -8,9 +8,15 @@ public class Move{
     }
 
     public boolean isOneStepUp(){
-        return fromTile.column == toTile.column && toTile.row - fromTile.row == -1;
+        return toTile.row - fromTile.row == -1;
     }
     public boolean isOneStepDown(){
-        return fromTile.column == toTile.column && toTile.row - fromTile.row == 1;
+        return toTile.row - fromTile.row == 1;
+    }
+    public boolean isVertical(){
+        return toTile.column == fromTile.column;
+    }
+    public boolean isDiagonal(){
+        return Math.abs(toTile.row - fromTile.row) == Math.abs(toTile.column - fromTile.column);
     }
 }
