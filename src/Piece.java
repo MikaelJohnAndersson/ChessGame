@@ -4,7 +4,6 @@ public abstract class Piece implements Moveable{
 
     Color color;
     Tile currentTile;
-    ImageIcon icon;
 
 
     public Piece(){

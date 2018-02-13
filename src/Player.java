@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Player {
     ArrayList<Piece> pieces = new ArrayList<>();
-    int numberOfStartingPawns = 8;
+    private final int numberOfStartingPawns = 8;
 
 
     Player(Color color){
@@ -12,8 +12,13 @@ public class Player {
         }
     }
 
-    public void makeMove(Tile toTile){
+    private Piece pickPiece(){
+        Random random = new Random();
+        return pieces.get(random.nextInt(pieces.size()));
 
+    }
+
+    public void makeMove(Tile toTile){
         Piece piece;
         while (true) {
             piece = pickPiece();
@@ -24,10 +29,5 @@ public class Player {
         }
     }
 
-    public Piece pickPiece(){
-
-        Random random = new Random();
-        return pieces.get(random.nextInt(pieces.size()));
-    }
 
 }
