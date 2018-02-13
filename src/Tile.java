@@ -1,15 +1,12 @@
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalButtonUI;
+import java.awt.*;
 
-public class Tile extends JButton {
-    int row;
-    int column;
+public class Tile extends JButton{
 
-    public Tile(int row, int column) {
-        this.row = row;
-        this.column = column;
+    public Tile(){
+        setBackground(Color.WHITE);
 
-        setOpaque(true);
-        setUI(new MetalButtonUI());
     }
 }
+
+

@@ -1,29 +1,12 @@
-import javax.swing.*;
+public class Piece {
+    int row;
+    int col;
+    String kindOfPiece;
 
-public abstract class Piece implements Moveable{
-
-    Color color;
-    Tile currentTile;
-
-
-    public Piece(){
-        this.color = null;
-        this.currentTile = null;
-    }
-
-    public Piece(Color color){
-        this.color = color;
+    public Piece(int row, int col){
+        this.row = row;
+        this.col = col;
 
     }
-
-    public void setCurrentTile(Tile tile) {
-        this.currentTile = tile;
-
-    }
-
-    public void move(Tile toTile) {
-        this.setCurrentTile(toTile);
-    }
-
-
 }
+

@@ -1,13 +1,11 @@
-public class Main {
+public class Main{
 
-    public static void main(String[] args) {
-        ChessBoard board = new ChessBoard();
-        ChessGUI chessGUI = new ChessGUI(board);
+    public static void main(String[] args){
+        ChessBoard chessBoard = new ChessBoard();
+        GUI gui = new GUI(chessBoard);
 
-        board.playerBlack.makeMove(board.getTiles()[5][6]);
-        board.playerWhite.makeMove(board.getTiles()[2][2]);
-        chessGUI.renderPieces(board);
-
+        gui.renderPieces(chessBoard,chessBoard.playerWhite);
+        gui.renderPieces(chessBoard,chessBoard.playerBlack);
 
     }
 }
