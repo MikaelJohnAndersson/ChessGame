@@ -4,12 +4,12 @@ import java.util.stream.Collectors;
 public class Player {
 
     ArrayList<Piece> pieces = new ArrayList<>();
-    Color color;
+    ChessColor chessColor;
     List<Move> possibleMoves;
     List<Move> bestMoves;
 
-    Player(Color color){
-        this.color = color;
+    Player(ChessColor chessColor){
+        this.chessColor = chessColor;
         possibleMoves = new ArrayList<>();
         bestMoves = new ArrayList<>();
     }
@@ -24,7 +24,7 @@ public class Player {
         }
 
        bestMoves = possibleMoves.stream()
-                .filter(move -> move.toTile.hasEnemyPiece(this.color))
+                .filter(move -> move.toTile.hasEnemyPiece(this.chessColor))
                 .collect(Collectors.toList());
 
         if (!bestMoves.isEmpty()){
@@ -54,7 +54,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return this.color + " PLAYER";
+        return this.chessColor + " PLAYER";
     }
 
 

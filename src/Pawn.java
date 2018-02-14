@@ -1,41 +1,31 @@
-import javax.swing.*;
+
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
-    private ImageIcon whitePawn = new ImageIcon("ChessGame/Resources/white-pawn.png");
-    private ImageIcon blackPawn = new ImageIcon("ChessGame/Resources/black-pawn.png");
 
-    public Pawn(Color color, ArrayList<Piece> pieces, Tile tile) {
-        super(color, pieces, tile);
-
-        if (color == Color.BLACK){
-            this.icon = blackPawn;
-        }
-        else {
-            this.icon = whitePawn;
-        }
-
+    public Pawn(ChessColor chessColor, ArrayList<Piece> pieces, Tile tile) {
+        super(chessColor, pieces, tile);
     }
 
     @Override
     public boolean isMovable(Move move) {
 
         if(!move.toTile.hasPiece()) {
-            if (color == Color.BLACK && move.isOneStepUp() && move.isVertical()) {
+            if (chessColor == ChessColor.BLACK && move.isOneStepUp() && move.isVertical()) {
                 return true;
             }
 
-            if (color == Color.WHITE && move.isOneStepDown() && move.isVertical()) {
+            if (chessColor == ChessColor.WHITE && move.isOneStepDown() && move.isVertical()) {
                 return true;
             }
         }
-        else if (move.toTile.hasEnemyPiece(this.color) && move.isDiagonal()){
-            if (color == Color.BLACK && move.isOneStepUp()) {
+        else if (move.toTile.hasEnemyPiece(this.chessColor) && move.isDiagonal()){
+            if (chessColor == ChessColor.BLACK && move.isOneStepUp()) {
                 return true;
             }
 
-            if (color == Color.WHITE && move.isOneStepDown()) {
+            if (chessColor == ChessColor.WHITE && move.isOneStepDown()) {
                 return true;
             }
         }
@@ -45,6 +35,6 @@ public class Pawn extends Piece {
 
     @Override
     public String toString() {
-        return this.color + " PAWN";
+        return this.chessColor + " PAWN";
     }
 }

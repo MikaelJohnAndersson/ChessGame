@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public abstract class Piece implements Moveable{
 
-    Color color;
+    ChessColor chessColor;
     ImageIcon icon;
     Tile tile;
     ArrayList<Piece> list;
 
 
-    public Piece(Color color, ArrayList<Piece> list, Tile tile){
-        this.color = color;
+    public Piece(ChessColor chessColor, ArrayList<Piece> list, Tile tile){
+        this.chessColor = chessColor;
         this.list = list;
         this.tile = tile;
         this.tile.setPiece(this);
@@ -57,4 +57,11 @@ public abstract class Piece implements Moveable{
         list.remove(this);
     }
 
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
+    }
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
 }

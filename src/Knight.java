@@ -1,20 +1,10 @@
-import javax.swing.*;
+
 import java.util.ArrayList;
 
 public class Knight extends Piece{
 
-    private ImageIcon whiteKnight = new ImageIcon("ChessGame/Resources/white-knight.png");
-    private ImageIcon blackKnight = new ImageIcon("ChessGame/Resources/black-knight.png");
-
-    public Knight(Color color, ArrayList<Piece> list, Tile tile) {
-        super(color, list, tile);
-
-        if (color == Color.BLACK){
-            this.icon = blackKnight;
-        }
-        else {
-            this.icon = whiteKnight;
-        }
+    public Knight(ChessColor chessColor, ArrayList<Piece> list, Tile tile) {
+        super(chessColor, list, tile);
     }
 
     @Override
@@ -22,7 +12,7 @@ public class Knight extends Piece{
         int diffRow = Math.abs(move.toTile.row - this.tile.row);
         int diffCol = Math.abs(move.toTile.column - this.tile.column);
 
-        if(!move.toTile.hasPiece() || move.toTile.hasEnemyPiece(this.color)) {
+        if(!move.toTile.hasPiece() || move.toTile.hasEnemyPiece(this.chessColor)) {
             return diffRow == 2 && diffCol == 1 || diffRow == 1 && diffCol == 2;
         }
         return false;
@@ -30,6 +20,6 @@ public class Knight extends Piece{
 
     @Override
     public String toString() {
-        return this.color + " KNIGHT";
+        return this.chessColor + " KNIGHT";
     }
 }

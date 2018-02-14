@@ -29,9 +29,9 @@ public class Tile extends JButton {
         return piece != null;
     }
 
-    public boolean hasEnemyPiece(Color color){
+    public boolean hasEnemyPiece(ChessColor chessColor){
         if (piece != null) {
-            return color != piece.color;
+            return chessColor != piece.chessColor;
         }
         else
             return false;

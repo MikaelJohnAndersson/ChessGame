@@ -12,8 +12,8 @@ public class ChessBoard {
 
     public ChessBoard() {
         tiles = new Tile[8][8];
+        playerList = Arrays.asList(new Player(ChessColor.BLACK), new Player(ChessColor.WHITE));
         createTiles();
-        playerList = Arrays.asList(new Player(Color.BLACK), new Player(Color.WHITE));
         createPieces();
     }
 
@@ -38,7 +38,7 @@ public class ChessBoard {
 
         for (Player player : playerList) {
 
-            if (player.color == Color.BLACK) {
+            if (player.chessColor == ChessColor.BLACK) {
                 frontRow = 6;
                 backRow = 7;
 
@@ -49,19 +49,19 @@ public class ChessBoard {
             }
 
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
-                player.pieces.add(new Pawn(player.color, player.pieces, tiles[frontRow][col]));
+                player.pieces.add(new Pawn(player.chessColor, player.pieces, tiles[frontRow][col]));
             }
 
 
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
                 if (col == 1 || col == 6) {
-                    player.pieces.add(new Knight(player.color, player.pieces, tiles[backRow][col]));
+                    player.pieces.add(new Knight(player.chessColor, player.pieces, tiles[backRow][col]));
 
                 /*
 
             } else if (i == 0 || i == 7) {
-                    player.pieces.add(new Rook(player.color, player.pieces, tiles[backRow][col]));
+                    player.pieces.add(new Rook(player.chessColor, player.pieces, tiles[backRow][col]));
 
             } else if (i == 2 || i == 5) {
                player.pieces.add(new Bishop(backRow, i));

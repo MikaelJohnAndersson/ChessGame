@@ -1,11 +1,18 @@
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
 
+
 public class ChessGUI extends JFrame {
 
     private final int TILESIZE = 75;
+    private ImageIcon whitePawn = new ImageIcon("ChessGame/Resources/white-pawn.png");
+    private ImageIcon blackPawn = new ImageIcon("ChessGame/Resources/black-pawn.png");
+    private ImageIcon whiteKnight = new ImageIcon("ChessGame/Resources/white-knight.png");
+    private ImageIcon blackKnight = new ImageIcon("ChessGame/Resources/black-knight.png");
+
 
     public ChessGUI(ChessBoard board) throws HeadlessException {
         super();
@@ -14,6 +21,7 @@ public class ChessGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setTiles(board);
+        setImageIcons(board);
         pack();
     }
 
@@ -27,7 +35,7 @@ public class ChessGUI extends JFrame {
         for (int row = 0; row < board.NUMBEROFROWS; row++) {
             for (int col = 0; col < board.NUMBEROFCOLUMNS; col++) {
 
-                //Changing color if tile is black
+                //Changing chessColor if tile is black
                 if ((row + col) % 2 != 0)
                     board.getTiles()[row][col].setBackground(Color.DARK_GRAY);
 
@@ -53,5 +61,34 @@ public class ChessGUI extends JFrame {
             }
         }
 
+    }
+
+    public void setImageIcons(ChessBoard chessBoard){
+
+        for (Player player : chessBoard.playerList) {
+
+            if (player.chessColor == ChessColor.WHITE) {
+                for (Piece p : player.pieces) {
+                    if (p instanceof Pawn) {
+                        p.setIcon(whitePawn);
+                    }
+                    if (p instanceof Knight) {
+                        p.setIcon(whiteKnight);
+                    }
+                }
+            }
+
+            if (player.chessColor == ChessColor.BLACK) {
+                for (Piece p : player.pieces) {
+                    if (p instanceof Pawn) {
+                        p.setIcon(blackPawn);
+                    }
+                    if (p instanceof Knight) {
+                        p.setIcon(blackKnight);
+                    }
+                }
+            }
+
+        }
     }
 }
