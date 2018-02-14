@@ -29,8 +29,8 @@ public abstract class Piece implements Moveable{
     @Override
     public ArrayList<Move> possibleMoves(ChessBoard board) {
 
-        ArrayList<Move> possibleMoves = new ArrayList<>();
         Move move;
+        ArrayList<Move> possibleMoves = new ArrayList<>();
 
         for(Tile[] row : board.getTiles()){
             for (Tile column : row){

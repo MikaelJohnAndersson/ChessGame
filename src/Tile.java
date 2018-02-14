@@ -30,8 +30,11 @@ public class Tile extends JButton {
     }
 
     public boolean hasEnemyPiece(Color color){
-
-        return color != piece.color;
+        if (piece != null) {
+            return color != piece.color;
+        }
+        else
+            return false;
     }
 
     @Override

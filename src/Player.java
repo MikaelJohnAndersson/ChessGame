@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Player {
 
@@ -15,20 +16,16 @@ public class Player {
 
     public void makeMove(ChessBoard board){
 
-       this.possibleMoves.clear();
-       this.bestMoves.clear();
+        this.possibleMoves.clear();
+        this.bestMoves.clear();
 
-       for(Piece p : pieces){
-           possibleMoves.addAll(p.possibleMoves(board));
-       }
-
-        for(Move move : possibleMoves){
-            if(move.toTile.hasPiece()) {
-                if (move.toTile.hasEnemyPiece(this.color)) {
-                    bestMoves.add(move);
-                }
-            }
+        for(Piece p : pieces){
+            possibleMoves.addAll(p.possibleMoves(board));
         }
+
+       bestMoves = possibleMoves.stream()
+                .filter(move -> move.toTile.hasEnemyPiece(this.color))
+                .collect(Collectors.toList());
 
         if (!bestMoves.isEmpty()){
             Move move = bestMoves.get(new Random().nextInt(bestMoves.size()));
