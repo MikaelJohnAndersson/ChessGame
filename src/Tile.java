@@ -34,4 +34,9 @@ public class Tile extends JButton {
         return color != piece.color;
     }
 
+    @Override
+    public String toString(){
+        return row + "*" + column;
+    }
+
 }

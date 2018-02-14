@@ -2,15 +2,11 @@ import java.util.*;
 
 public class Player {
     ArrayList<Piece> pieces = new ArrayList<>();
-    int numberOfStartingPawns = 8;
     Color color;
 
 
     Player(Color color){
         this.color = color;
-        for (int i = 0; i <numberOfStartingPawns; i++){
-            pieces.add(new Pawn(color, pieces));
-        }
     }
 
     public void makeMove(ChessBoard board){
@@ -35,6 +31,8 @@ public class Player {
             Piece piece = move.fromTile.getPiece();
 
             Piece opponentPiece = move.toTile.getPiece();
+            System.out.println(piece + " beats " + opponentPiece + " at " + move.toTile);
+
             opponentPiece.remove();
 
             piece.move(move.toTile);
@@ -49,5 +47,7 @@ public class Player {
 
 
     }
+
+
 
 }

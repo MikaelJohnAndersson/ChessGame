@@ -12,24 +12,17 @@ public class ChessGame {
     public void gameLoop(){
 
         while (true) {
-            board.playerWhite.makeMove(board);
-            chessGUI.renderPieces(board);
 
-            try {
-                Thread.sleep(500);
-            }catch (Exception e){
-                System.out.println(e);
+            for (Player player : board.playerList) {
+                player.makeMove(board);
+
+                try {
+                    Thread.sleep(500);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                chessGUI.renderPieces(board);
             }
-
-            board.playerBlack.makeMove(board);
-            chessGUI.renderPieces(board);
-
-            try {
-                Thread.sleep(500);
-            }catch (Exception e){
-                System.out.println(e);
-            }
-
         }
 
     }

@@ -1,27 +1,28 @@
 
+import java.util.Arrays;
+import java.util.List;
 
 public class ChessBoard {
 
     private Tile[][] tiles;
 
-    final Player playerBlack = new Player(Color.BLACK);
-    final Player playerWhite = new Player(Color.WHITE);
-
     final int NUMBEROFROWS = 8;
     final int NUMBEROFCOLUMNS = 8;
+    public List<Player> playerList;
 
     public ChessBoard() {
         tiles = new Tile[8][8];
         createTiles();
-        setPiecesOnBoard();
+        playerList = Arrays.asList(new Player(Color.BLACK), new Player(Color.WHITE));
+        createPieces();
     }
 
     public Tile[][] getTiles() {
         return tiles;
     }
 
-    public void createTiles(){
-        for(int row = 0; row < NUMBEROFROWS; row++) {
+    public void createTiles() {
+        for (int row = 0; row < NUMBEROFROWS; row++) {
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
                 //Creating tile
@@ -30,19 +31,52 @@ public class ChessBoard {
         }
     }
 
-    public void setPiecesOnBoard(){
-        //Setting pawns for white
-        for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
-            Piece piece = playerWhite.pieces.get(column);
-            tiles[1][column].setPiece(piece);
-            piece.setPosition(tiles[1][column]);
-        }
+    private void createPieces() {
 
-        //Setting pawns for black
-        for(int column = 0; column < NUMBEROFCOLUMNS; column++) {
-            Piece piece = playerBlack.pieces.get(column);
-            tiles[6][column].setPiece(piece);
-            piece.setPosition(tiles[6][column]);
+        int backRow;
+        int frontRow;
+
+        for (Player player : playerList) {
+
+            if (player.color == Color.BLACK) {
+                frontRow = 6;
+                backRow = 7;
+
+            } else {
+                frontRow = 1;
+                backRow = 0;
+
+            }
+
+            for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
+                player.pieces.add(new Pawn(player.color, player.pieces, tiles[frontRow][col]));
+            }
+
+
+            for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
+
+                if (col == 1 || col == 6) {
+                    player.pieces.add(new Knight(player.color, player.pieces, tiles[backRow][col]));
+
+                /*
+
+            } else if (i == 0 || i == 7) {
+                    player.pieces.add(new Rook(player.color, player.pieces, tiles[backRow][col]));
+
+            } else if (i == 2 || i == 5) {
+               player.pieces.add(new Bishop(backRow, i));
+
+            } else if (i == 3) {
+                player.pieces.add(new Queen(backRow, i));
+
+            } else {
+                player.pieces.add(new King(backRow, i));
+
+            }
+            */
+                }
+
+            }
         }
     }
 }

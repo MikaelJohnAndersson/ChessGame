@@ -15,7 +15,6 @@ public class ChessGUI extends JFrame {
 
         setTiles(board);
         pack();
-
     }
 
     private void setTiles(ChessBoard board) {
@@ -43,17 +42,16 @@ public class ChessGUI extends JFrame {
     void renderPieces(ChessBoard chessBoard) {
 
         for(Tile[] row : chessBoard.getTiles()){
-            for (Tile column : row){
-               column.setIcon(null);
+            for(Tile column : row){
+                column.setIcon(null);
             }
         }
 
-        for(Tile[] row : chessBoard.getTiles()){
-            for (Tile column : row){
-                if (column.hasPiece()){
-                    column.setIcon(column.piece.icon);
-                }
+        for(Player player : chessBoard.playerList){
+            for(Piece piece : player.pieces){
+                piece.getTile().setIcon(piece.icon);
             }
         }
+
     }
 }

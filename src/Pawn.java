@@ -6,8 +6,8 @@ public class Pawn extends Piece {
     private ImageIcon whitePawn = new ImageIcon("ChessGame/Resources/white-pawn.png");
     private ImageIcon blackPawn = new ImageIcon("ChessGame/Resources/black-pawn.png");
 
-    public Pawn(Color color, ArrayList<Piece> pieces) {
-        super(color, pieces);
+    public Pawn(Color color, ArrayList<Piece> pieces, Tile tile) {
+        super(color, pieces, tile);
 
         if (color == Color.BLACK){
             this.icon = blackPawn;
@@ -43,4 +43,8 @@ public class Pawn extends Piece {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return this.color + " PAWN";
+    }
 }
