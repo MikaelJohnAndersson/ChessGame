@@ -1,18 +1,22 @@
 import java.util.*;
 
 public class Player {
+
     ArrayList<Piece> pieces = new ArrayList<>();
     Color color;
-
+    List<Move> possibleMoves;
+    List<Move> bestMoves;
 
     Player(Color color){
         this.color = color;
+        possibleMoves = new ArrayList<>();
+        bestMoves = new ArrayList<>();
     }
 
     public void makeMove(ChessBoard board){
 
-       List<Move> possibleMoves = new ArrayList<>();
-       List<Move> bestMoves = new ArrayList<>();
+       this.possibleMoves.clear();
+       this.bestMoves.clear();
 
        for(Piece p : pieces){
            possibleMoves.addAll(p.possibleMoves(board));
@@ -38,16 +42,23 @@ public class Player {
             piece.move(move.toTile);
 
         }
-        else{
+        else if (!possibleMoves.isEmpty()){
             Move move = possibleMoves.get(new Random().nextInt(possibleMoves.size()));
             Piece piece = move.fromTile.getPiece();
 
             piece.move(move.toTile);
         }
+        else{
+            System.out.println(this + " cannot move. GAME OVER!");
+        }
 
 
     }
 
+    @Override
+    public String toString() {
+        return this.color + " PLAYER";
+    }
 
 
 }

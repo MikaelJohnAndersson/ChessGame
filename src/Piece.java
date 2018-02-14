@@ -56,4 +56,5 @@ public abstract class Piece implements Moveable{
     public void remove(){
         list.remove(this);
     }
+
 }
