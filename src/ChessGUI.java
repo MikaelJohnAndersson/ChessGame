@@ -1,17 +1,21 @@
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
+import java.util.HashMap;
 
 
 public class ChessGUI extends JFrame {
 
     private final int TILESIZE = 75;
-    private ImageIcon whitePawn = new ImageIcon("ChessGame/Resources/white-pawn.png");
-    private ImageIcon blackPawn = new ImageIcon("ChessGame/Resources/black-pawn.png");
-    private ImageIcon whiteKnight = new ImageIcon("ChessGame/Resources/white-knight.png");
-    private ImageIcon blackKnight = new ImageIcon("ChessGame/Resources/black-knight.png");
+
+    private HashMap<String, ImageIcon> imageicons = new HashMap<>();
+    {
+        imageicons.put("WHITE PAWN", new ImageIcon("ChessGame/Resources/white-pawn.png"));
+        imageicons.put("BLACK PAWN", new ImageIcon("ChessGame/Resources/black-pawn.png"));
+        imageicons.put("WHITE KNIGHT", new ImageIcon("ChessGame/Resources/white-knight.png"));
+        imageicons.put("BLACK KNIGHT", new ImageIcon("ChessGame/Resources/black-knight.png"));
+    }
 
 
     public ChessGUI(ChessBoard board) throws HeadlessException {
@@ -21,7 +25,6 @@ public class ChessGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setTiles(board);
-        setImageIcons(board);
         pack();
     }
 
@@ -43,6 +46,7 @@ public class ChessGUI extends JFrame {
                 panel.add(board.getTiles()[row][col]);
             }
         }
+
         //Adding panel to JFrame
         add(panel);
     }
@@ -57,38 +61,9 @@ public class ChessGUI extends JFrame {
 
         for(Player player : chessBoard.playerList){
             for(Piece piece : player.pieces){
-                piece.getTile().setIcon(piece.icon);
+                piece.getTile().setIcon(imageicons.get(piece.toString()));
             }
         }
 
-    }
-
-    public void setImageIcons(ChessBoard chessBoard){
-
-        for (Player player : chessBoard.playerList) {
-
-            if (player.chessColor == ChessColor.WHITE) {
-                for (Piece p : player.pieces) {
-                    if (p instanceof Pawn) {
-                        p.setIcon(whitePawn);
-                    }
-                    if (p instanceof Knight) {
-                        p.setIcon(whiteKnight);
-                    }
-                }
-            }
-
-            if (player.chessColor == ChessColor.BLACK) {
-                for (Piece p : player.pieces) {
-                    if (p instanceof Pawn) {
-                        p.setIcon(blackPawn);
-                    }
-                    if (p instanceof Knight) {
-                        p.setIcon(blackKnight);
-                    }
-                }
-            }
-
-        }
     }
 }

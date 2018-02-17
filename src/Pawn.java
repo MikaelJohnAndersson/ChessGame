@@ -6,6 +6,7 @@ public class Pawn extends Piece {
 
     public Pawn(ChessColor chessColor, ArrayList<Piece> pieces, Tile tile) {
         super(chessColor, pieces, tile);
+        this.value = 10;
     }
 
     @Override
