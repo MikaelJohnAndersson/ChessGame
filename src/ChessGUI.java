@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.util.HashMap;
 
 
-public class ChessGUI extends JFrame {
+public class ChessGUI extends JFrame{
 
     private final int TILESIZE = 75;
 
@@ -15,6 +15,8 @@ public class ChessGUI extends JFrame {
         imageicons.put("BLACK PAWN", new ImageIcon("ChessGame/Resources/black-pawn.png"));
         imageicons.put("WHITE KNIGHT", new ImageIcon("ChessGame/Resources/white-knight.png"));
         imageicons.put("BLACK KNIGHT", new ImageIcon("ChessGame/Resources/black-knight.png"));
+        imageicons.put("WHITE KING", new ImageIcon("ChessGame/Resources/white-king.png"));
+        imageicons.put("BLACK KING", new ImageIcon("ChessGame/Resources/black-king.png"));
     }
 
 
@@ -66,4 +68,5 @@ public class ChessGUI extends JFrame {
         }
 
     }
+
 }

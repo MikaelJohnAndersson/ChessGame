@@ -57,6 +57,12 @@ public class ChessBoard {
 
                 if (col == 1 || col == 6) {
                     player.pieces.add(new Knight(player.chessColor, player.pieces, tiles[backRow][col]));
+                }
+
+                else if(col == 4)
+                    player.pieces.add(new King(player.chessColor, player.pieces, tiles[backRow][col]));
+
+                    }
 
                 /*
 
@@ -78,5 +84,5 @@ public class ChessBoard {
 
             }
         }
-    }
-}
+
+
