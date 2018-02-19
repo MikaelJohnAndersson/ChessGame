@@ -1,12 +1,12 @@
-import javax.swing.*;
+
 import java.util.ArrayList;
 
 public abstract class Piece implements Moveable{
 
     ChessColor chessColor;
-    ImageIcon icon;
     Tile tile;
     ArrayList<Piece> list;
+    int value;
 
 
     public Piece(ChessColor chessColor, ArrayList<Piece> list, Tile tile){
@@ -55,13 +55,5 @@ public abstract class Piece implements Moveable{
 
     public void remove(){
         list.remove(this);
-    }
-
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
-    }
-
-    public ImageIcon getIcon() {
-        return icon;
     }
 }

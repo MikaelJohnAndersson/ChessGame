@@ -5,6 +5,7 @@ public class Knight extends Piece{
 
     public Knight(ChessColor chessColor, ArrayList<Piece> list, Tile tile) {
         super(chessColor, list, tile);
+        this.value = 20;
     }
 
     @Override

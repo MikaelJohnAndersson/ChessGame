@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Player {
 
@@ -19,24 +18,24 @@ public class Player {
         this.possibleMoves.clear();
         this.bestMoves.clear();
 
-        for(Piece p : pieces){
-            possibleMoves.addAll(p.possibleMoves(board));
-        }
+        pieces.forEach(piece -> possibleMoves.addAll(piece.possibleMoves(board)));
 
-       bestMoves = possibleMoves.stream()
+        Move bestMove = possibleMoves.stream()
                 .filter(move -> move.toTile.hasEnemyPiece(this.chessColor))
-                .collect(Collectors.toList());
+                .sorted(Comparator.comparing(move -> move.toTile.getPiece().value))
+                .findFirst()
+                .orElse(null);
 
-        if (!bestMoves.isEmpty()){
-            Move move = bestMoves.get(new Random().nextInt(bestMoves.size()));
-            Piece piece = move.fromTile.getPiece();
 
-            Piece opponentPiece = move.toTile.getPiece();
-            System.out.println(piece + " beats " + opponentPiece + " at " + move.toTile);
+        if (bestMove != null){
+            Piece piece = bestMove.fromTile.getPiece();
+            Piece opponentPiece = bestMove.toTile.getPiece();
+
+            System.out.println(piece + " beats " + opponentPiece + " at " + bestMove.toTile);
 
             opponentPiece.remove();
 
-            piece.move(move.toTile);
+            piece.move(bestMove.toTile);
 
         }
         else if (!possibleMoves.isEmpty()){
