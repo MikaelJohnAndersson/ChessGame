@@ -2,48 +2,39 @@ import java.util.Scanner;
 
 public class ChessGame{
 
-    ChessBoard board;
-    ChessGUI chessGUI;
-
+    private ChessBoard board;
+    private ChessGUI chessGUI;
 
     public ChessGame() {
-
         board = new ChessBoard();
         chessGUI = new ChessGUI(board);
 
         gameLoop();
     }
 
-    public void gameLoop() {
-
+    private void gameLoop() {
         Scanner scan = new Scanner(System.in);
         boolean gameOver = false;
 
-            while (!gameOver) {
+        while (!gameOver) {
+            for (Player player : board.playerList) {
+                if (!gameOver){
 
-                for (Player player : board.playerList) {
+                    player.initiateMoves(board);
+                    player.makeMove(board);
 
-                    if (!gameOver){
-                        player.initiateMoves(board);
-                        player.makeMove(board);
+                    chessGUI.renderPieces(board);
 
-                        chessGUI.renderPieces(board);
+                    System.out.println("Press any key to continue.");
+                    scan.nextLine();
 
-                        System.out.println("Press any key to continue.");
-                        scan.nextLine();
-
-                        gameOver = isGameOver(player);
-                    }
-
+                    gameOver = isGameOver(player);
                 }
             }
-
-
-
+        }
     }
 
-
-    public boolean isGameOver(Player player) {
+    private boolean isGameOver(Player player) {
 
         Boolean isKingAlive = player.pieces.stream()
                 .anyMatch(piece -> piece instanceof King);
@@ -54,7 +45,6 @@ public class ChessGame{
         }
 
         else if (player.possibleMoves.isEmpty()) {
-
             System.out.println(player + " cannot move. GAME OVER!");
 
             Player player1 = board.playerList.get(0);
@@ -66,9 +56,8 @@ public class ChessGame{
             else{
                 System.out.println(player2.chessColor + " PLAYER IS THE WINNER!");
             }
-                return true;
+            return true;
         }
         return false;
     }
-
 }

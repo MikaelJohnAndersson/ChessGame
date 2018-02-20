@@ -8,7 +8,7 @@ public class ChessBoard {
 
     final int NUMBEROFROWS = 8;
     final int NUMBEROFCOLUMNS = 8;
-    public List<Player> playerList;
+    protected List<Player> playerList;
 
     public ChessBoard() {
         tiles = new Tile[8][8];
@@ -17,11 +17,7 @@ public class ChessBoard {
         createPieces();
     }
 
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
-    public void createTiles() {
+    private void createTiles() {
         for (int row = 0; row < NUMBEROFROWS; row++) {
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
@@ -29,6 +25,10 @@ public class ChessBoard {
                 tiles[row][col] = new Tile(row, col);
             }
         }
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
     }
 
     private void createPieces() {
@@ -50,39 +50,32 @@ public class ChessBoard {
 
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
                 player.pieces.add(new Pawn(player.chessColor, player.pieces, tiles[frontRow][col]));
-            }
 
+            }
 
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
-
                 if (col == 1 || col == 6) {
                     player.pieces.add(new Knight(player.chessColor, player.pieces, tiles[backRow][col]));
-                }
 
-                else if(col == 4)
+                }
+                else if(col == 4) {
                     player.pieces.add(new King(player.chessColor, player.pieces, tiles[backRow][col]));
 
-                    }
-
-                /*
-
-            } else if (i == 0 || i == 7) {
-                    player.pieces.add(new Rook(player.chessColor, player.pieces, tiles[backRow][col]));
-
-            } else if (i == 2 || i == 5) {
-               player.pieces.add(new Bishop(backRow, i));
-
-            } else if (i == 3) {
-                player.pieces.add(new Queen(backRow, i));
-
-            } else {
-                player.pieces.add(new King(backRow, i));
-
-            }
-            */
                 }
-
             }
         }
+    }
+}
 
+//code for rest of the pieces
+/*
+else if (i == 0 || i == 7) {
+player.pieces.add(new Rook(player.chessColor, player.pieces, tiles[backRow][col]));
+} else if (i == 2 || i == 5) {
+ player.pieces.add(new Bishop(backRow, i));
+} else if (i == 3) {
+player.pieces.add(new Queen(backRow, i));
+} else {
+ player.pieces.add(new King(backRow, i));
+*/
 

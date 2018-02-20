@@ -9,11 +9,8 @@ public class King extends Piece{
 
     @Override
     public boolean isMovable(Move move) {
+        return (!move.toTile.hasPiece() || move.toTile.hasEnemyPiece(this.chessColor)) && move.isOneStepAnyInAnyDirection();
 
-        if(!move.toTile.hasPiece() || move.toTile.hasEnemyPiece(this.chessColor)){
-        return move.isOneStepAnyInAnyDirection();
-        }
-        return false;
     }
 
     @Override

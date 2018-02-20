@@ -5,7 +5,7 @@ public class Tile extends JButton {
 
     int row;
     int column;
-    Piece piece;
+    private Piece piece;
 
     //Setting appereance of tile
     public Tile(int row, int column) {
@@ -29,12 +29,8 @@ public class Tile extends JButton {
         return piece != null;
     }
 
-    public boolean hasEnemyPiece(ChessColor chessColor){
-        if (piece != null) {
-            return chessColor != piece.chessColor;
-        }
-        else
-            return false;
+    public boolean hasEnemyPiece(ChessColor chessColor) {
+        return piece != null && chessColor != piece.chessColor;
     }
 
     @Override

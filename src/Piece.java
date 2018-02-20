@@ -5,9 +5,8 @@ public abstract class Piece implements Moveable{
 
     ChessColor chessColor;
     Tile tile;
-    ArrayList<Piece> list;
     int value;
-
+    private ArrayList<Piece> list;
 
     public Piece(ChessColor chessColor, ArrayList<Piece> list, Tile tile){
         this.chessColor = chessColor;
@@ -18,12 +17,11 @@ public abstract class Piece implements Moveable{
 
     @Override
     public void move(Tile toTile) {
-
         System.out.println("Moving " + this + " from " + this.getTile() + " to " + toTile);
-
         tile.setPiece(null);
         toTile.setPiece(this);
         setTile(toTile);
+
     }
 
     @Override
@@ -45,7 +43,7 @@ public abstract class Piece implements Moveable{
     }
 
 
-    public void setTile(Tile tile) {
+    private void setTile(Tile tile) {
         this.tile = tile;
     }
 

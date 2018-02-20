@@ -13,10 +13,7 @@ public class Knight extends Piece{
         int diffRow = Math.abs(move.toTile.row - this.tile.row);
         int diffCol = Math.abs(move.toTile.column - this.tile.column);
 
-        if(!move.toTile.hasPiece() || move.toTile.hasEnemyPiece(this.chessColor)) {
-            return diffRow == 2 && diffCol == 1 || diffRow == 1 && diffCol == 2;
-        }
-        return false;
+        return (!move.toTile.hasPiece() || move.toTile.hasEnemyPiece(this.chessColor)) && (diffRow == 2 && diffCol == 1 || diffRow == 1 && diffCol == 2);
     }
 
     @Override

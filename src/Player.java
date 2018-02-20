@@ -44,7 +44,6 @@ public class Player {
 
         pieces.forEach(piece -> possibleMoves.addAll(piece.possibleMoves(board)));
 
-
     }
 
     @Override
