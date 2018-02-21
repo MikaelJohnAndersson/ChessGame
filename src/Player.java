@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Player {
 
-    ArrayList<Piece> pieces = new ArrayList<>();
-    ChessColor chessColor;
-    List<Move> possibleMoves;
+    private ArrayList<Piece> pieces = new ArrayList<>();
+    private ChessColor chessColor;
+    private List<Move> possibleMoves;
 
     Player(ChessColor chessColor){
         this.chessColor = chessColor;
@@ -19,7 +19,7 @@ public class Player {
         //Filtrerar alla drag med möjlighet att slå ut en motståndarpjäs. Sorterar listan efter motståndarpjäsernas värde och tar högsta värdet.
         Move beatOpponentPiece = possibleMoves.stream()
                 .filter(move -> move.toTile.hasEnemyPiece(this.chessColor))
-                .sorted(Comparator.comparing((Move move) -> move.toTile.getPiece().value).reversed())
+                .sorted(Comparator.comparing((Move move) -> move.toTile.getPiece().getValue()).reversed())
                 .findFirst()
                 .orElse(null);
 
@@ -57,5 +57,13 @@ public class Player {
         return this.chessColor + " PLAYER";
     }
 
+
+    public ChessColor getChessColor() {
+        return chessColor;
+    }
+
+    public ArrayList<Piece> getPieces() {
+        return pieces;
+    }
 
 }

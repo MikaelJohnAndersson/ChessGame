@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class ChessGame{
 
-    ChessBoard board;
-    ChessGUI chessGUI;
-    boolean gameOver = false;
+    private ChessBoard board;
+    private ChessGUI chessGUI;
+    private boolean gameOver = false;
 
 
     public ChessGame() {
@@ -54,7 +54,7 @@ public class ChessGame{
 
         //Kollar om någon av spelarna har förlorat sin kung
         for (Player player : board.players) {
-            if (player.pieces.stream()
+            if (player.getPieces().stream()
                     .noneMatch(piece -> piece instanceof King)) {
                 System.out.println(player + "'S KING IS DEAD! GAME OVER!");
                 gameOver = true;
@@ -71,7 +71,7 @@ public class ChessGame{
     public Player winningPlayer(){
 
         return board.players.stream()
-               .sorted(Comparator.comparingInt((Player o) -> o.pieces.stream().mapToInt((Piece p) -> p.value).sum()).reversed())
+               .sorted(Comparator.comparingInt((Player o) -> o.getPieces().stream().mapToInt(Piece::getValue).sum()).reversed())
                 .findFirst()
                 .orElse(null);
     }

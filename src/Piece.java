@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public abstract class Piece implements Moveable{
 
-    ChessColor chessColor;
-    Tile tile;
-    ArrayList<Piece> list;
-    int value;
+    protected ChessColor chessColor;
+    protected Tile tile;
+    protected ArrayList<Piece> list;
+    protected int value;
 
     public Piece(ChessColor chessColor, ArrayList<Piece> list, Tile tile){
         //Pjäsens färg
@@ -68,5 +68,9 @@ public abstract class Piece implements Moveable{
     //Tar bort pjäsen från tillhörande lista
     public void remove(){
         list.remove(this);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

@@ -39,7 +39,7 @@ public class ChessBoard {
 
         for (Player player : players) {
 
-            if (player.chessColor == ChessColor.BLACK) {
+            if (player.getChessColor() == ChessColor.BLACK) {
                 frontRow = 6;
                 backRow = 7;
 
@@ -50,18 +50,18 @@ public class ChessBoard {
             }
 
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
-                player.pieces.add(new Pawn(player.chessColor, player.pieces, tiles[frontRow][col]));
+                player.getPieces().add(new Pawn(player.getChessColor(), player.getPieces(), tiles[frontRow][col]));
             }
 
 
             for (int col = 0; col < NUMBEROFCOLUMNS; col++) {
 
                 if (col == 1 || col == 6) {
-                    player.pieces.add(new Knight(player.chessColor, player.pieces, tiles[backRow][col]));
+                    player.getPieces().add(new Knight(player.getChessColor(), player.getPieces(), tiles[backRow][col]));
                 }
 
                 else if(col == 4)
-                    player.pieces.add(new King(player.chessColor, player.pieces, tiles[backRow][col]));
+                    player.getPieces().add(new King(player.getChessColor(), player.getPieces(), tiles[backRow][col]));
 
                     }
 
