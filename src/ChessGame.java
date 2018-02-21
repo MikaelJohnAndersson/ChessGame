@@ -21,11 +21,14 @@ public class ChessGame{
     public void gameLoop() {
 
         Scanner scan = new Scanner(System.in);
+        chessGUI.renderPieces(board);
+        Print.pressEnterToContinue();
+        scan.nextLine();
 
             while (!gameOver) {
 
                 //Loopar igenom listan med players som finns i board-klassen
-                for (Player player : board.playerList) {
+                for (Player player : board.players) {
 
                     if (!gameOver){
 
@@ -34,7 +37,7 @@ public class ChessGame{
                         //GUI-klassen renderar pjäserna på sina nya positioner
                         chessGUI.renderPieces(board);
 
-                        System.out.println("Press ENTER to continue.");
+                        Print.pressEnterToContinue();
                         scan.nextLine();
 
                         //Metod som kollar om någon av spelarna har förlorat sin kung, eller om någon spelare inte kan röra sig
@@ -50,7 +53,7 @@ public class ChessGame{
     public void isGameOver() {
 
         //Kollar om någon av spelarna har förlorat sin kung
-        for (Player player : board.playerList) {
+        for (Player player : board.players) {
             if (player.pieces.stream()
                     .noneMatch(piece -> piece instanceof King)) {
                 System.out.println(player + "'S KING IS DEAD! GAME OVER!");
@@ -67,7 +70,7 @@ public class ChessGame{
     //Metod som returnerar vinnaren genom att lägga sortera spelarlistan efter den spelare vars pjäser är värda mest poäng
     public Player winningPlayer(){
 
-        return board.playerList.stream()
+        return board.players.stream()
                .sorted(Comparator.comparingInt((Player o) -> o.pieces.stream().mapToInt((Piece p) -> p.value).sum()).reversed())
                 .findFirst()
                 .orElse(null);

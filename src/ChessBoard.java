@@ -8,12 +8,12 @@ public class ChessBoard {
 
     final int NUMBEROFROWS = 8;
     final int NUMBEROFCOLUMNS = 8;
-    public List<Player> playerList;
+    public List<Player> players;
 
     //Skapar schackbrädet. Skapar två spelare i en lista. Skapar rutorna tillhörande brädet. Skapar pjäser och sätter ut dem på brädet.
     public ChessBoard() {
         tiles = new Tile[8][8];
-        playerList = Arrays.asList(new Player(ChessColor.BLACK), new Player(ChessColor.WHITE));
+        players = Arrays.asList(new Player(ChessColor.BLACK), new Player(ChessColor.WHITE));
         createTiles();
         createPieces();
     }
@@ -37,7 +37,7 @@ public class ChessBoard {
         int backRow;
         int frontRow;
 
-        for (Player player : playerList) {
+        for (Player player : players) {
 
             if (player.chessColor == ChessColor.BLACK) {
                 frontRow = 6;

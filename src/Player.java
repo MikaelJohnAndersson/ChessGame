@@ -41,11 +41,6 @@ public class Player {
         }
     }
 
-    @Override
-    public String toString() {
-        return this.chessColor + " PLAYER";
-    }
-
     //Metod som returnerar en lista med spelarens möjliga drag.
     public List<Move> possibleMoves(ChessBoard board){
         //Rensar aktuell spelares lista
@@ -55,6 +50,11 @@ public class Player {
         pieces.forEach(piece -> possibleMoves.addAll(piece.possibleMoves(board)));
 
         return possibleMoves;
+    }
+
+    @Override
+    public String toString() {
+        return this.chessColor + " PLAYER";
     }
 
 

@@ -63,7 +63,7 @@ public class ChessGUI extends JFrame{
             }
         }
 
-        for(Player player : chessBoard.playerList){
+        for(Player player : chessBoard.players){
             for(Piece piece : player.pieces){
                 piece.getTile().setIcon(imageicons.get(piece.toString()));
             }

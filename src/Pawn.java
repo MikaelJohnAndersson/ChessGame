@@ -12,6 +12,7 @@ public class Pawn extends Piece {
     @Override
     public boolean isMovable(Move move) {
 
+        //Om destinationsrutan inte har en pjäs på sig
         if(!move.toTile.hasPiece()) {
             if (chessColor == ChessColor.BLACK && move.isOneStepUp() && move.isVertical()) {
                 return true;
@@ -21,6 +22,7 @@ public class Pawn extends Piece {
                 return true;
             }
         }
+        //Om destinationsrutan har en fiendepjäs och draget är diagonalt
         else if (move.toTile.hasEnemyPiece(this.chessColor) && move.isDiagonal()){
             if (chessColor == ChessColor.BLACK && move.isOneStepUp()) {
                 return true;
@@ -31,6 +33,7 @@ public class Pawn extends Piece {
             }
         }
 
+        //(Om destinationsrutan har en pjäs och draget inte är diagonalt och/eller ett steg)
         return false;
     }
 

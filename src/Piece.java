@@ -22,12 +22,12 @@ public abstract class Piece implements Moveable{
     @Override
     public void move(Tile toTile) {
 
-        System.out.println("Moving " + this + " from " + this.getTile() + " to " + toTile);
+        Print.printMove(this, toTile);
 
         //Om pjäsen slår slår fiendepjäs
         if(toTile.hasEnemyPiece(this.chessColor)){
             Piece opponentPiece = toTile.getPiece();
-            System.out.println(this + " beats " + opponentPiece + " at " + toTile);
+            Print.beatsPiece(this, opponentPiece);
             opponentPiece.remove();
         }
 
@@ -65,7 +65,7 @@ public abstract class Piece implements Moveable{
         return tile;
     }
 
-    //Tar bort pjäsen från sin lista
+    //Tar bort pjäsen från tillhörande lista
     public void remove(){
         list.remove(this);
     }
