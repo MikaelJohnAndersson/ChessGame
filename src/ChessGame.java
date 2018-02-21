@@ -22,7 +22,7 @@ public class ChessGame{
 
         Scanner scan = new Scanner(System.in);
         chessGUI.renderPieces(board);
-        Print.pressEnterToContinue();
+        Print.pressEnterToStart();
         scan.nextLine();
 
             while (!gameOver) {

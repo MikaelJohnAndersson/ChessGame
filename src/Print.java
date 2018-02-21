@@ -11,4 +11,7 @@ public abstract class Print {
     public static void pressEnterToContinue(){
         System.out.println("Press ENTER to continue.");
     }
+    public static void pressEnterToStart(){
+        System.out.println("Press ENTER to start game.");
+    }
 }
