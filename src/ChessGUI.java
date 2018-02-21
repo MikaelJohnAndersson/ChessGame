@@ -7,8 +7,10 @@ import java.util.HashMap;
 
 public class ChessGUI extends JFrame{
 
+    //Storleken på schackrutorna i pixlar
     private final int TILESIZE = 75;
 
+    //Hashmap som lagrar pjäsernas bildikoner. Ikonen hämtas genom pjäsens toString()-metod
     private HashMap<String, ImageIcon> imageicons = new HashMap<>();
     {
         imageicons.put("WHITE PAWN", new ImageIcon("ChessGame/Resources/white-pawn.png"));
@@ -19,7 +21,7 @@ public class ChessGUI extends JFrame{
         imageicons.put("BLACK KING", new ImageIcon("ChessGame/Resources/black-king.png"));
     }
 
-
+    //Konstruktor sätter upp en ChessGUI(JFrame) och initierar rutorna genom en grid-layout
     public ChessGUI(ChessBoard board) throws HeadlessException {
         super();
         setResizable(false);

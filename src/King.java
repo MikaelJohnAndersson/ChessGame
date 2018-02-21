@@ -4,7 +4,7 @@ public class King extends Piece{
 
     public King(ChessColor chessColor, ArrayList<Piece> list, Tile tile) {
         super(chessColor, list, tile);
-        this.value = 100;
+        this.value = 1000;
     }
 
     @Override

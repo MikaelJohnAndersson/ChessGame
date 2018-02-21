@@ -10,9 +10,11 @@ public class ChessGame{
 
     public ChessGame() {
 
+        //Skapar brädet och GUI
         board = new ChessBoard();
         chessGUI = new ChessGUI(board);
 
+        //Anropar gameloop
         gameLoop();
     }
 
@@ -22,29 +24,39 @@ public class ChessGame{
 
             while (!gameOver) {
 
+                //Loopar igenom listan med players som finns i board-klassen
                 for (Player player : board.playerList) {
 
                     if (!gameOver){
+
+                        //Player söker efter möjliga moves och utför ett drag
                         player.makeMove(board);
+                        //GUI-klassen renderar pjäserna på sina nya positioner
                         chessGUI.renderPieces(board);
-                        System.out.println("Press any key to continue.");
+
+                        System.out.println("Press ENTER to continue.");
                         scan.nextLine();
+
+                        //Metod som kollar om någon av spelarna har förlorat sin kung, eller om någon spelare inte kan röra sig
                         isGameOver();
                     }
                 }
             }
 
-        System.out.println("WINNING PLAYER IS: " + winningPlayer());
+        System.out.println(winningPlayer() + " WINS!");
     }
 
 
     public void isGameOver() {
 
+        //Kollar om någon av spelarna har förlorat sin kung
         for (Player player : board.playerList) {
             if (player.pieces.stream()
                     .noneMatch(piece -> piece instanceof King)) {
                 System.out.println(player + "'S KING IS DEAD! GAME OVER!");
                 gameOver = true;
+
+        //KOllar om någon av spelarna inte kan röra sig (Möjliga drag == null)
             } else if (player.possibleMoves(board) == null) {
                 System.out.println(player + " cannot move. GAME OVER!");
                 gameOver = true;
@@ -52,6 +64,7 @@ public class ChessGame{
         }
     }
 
+    //Metod som returnerar vinnaren genom att lägga sortera spelarlistan efter den spelare vars pjäser är värda mest poäng
     public Player winningPlayer(){
 
         return board.playerList.stream()

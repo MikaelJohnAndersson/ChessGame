@@ -10,6 +10,7 @@ public class ChessBoard {
     final int NUMBEROFCOLUMNS = 8;
     public List<Player> playerList;
 
+    //Skapar schackbrädet. Skapar två spelare i en lista. Skapar rutorna tillhörande brädet. Skapar pjäser och sätter ut dem på brädet.
     public ChessBoard() {
         tiles = new Tile[8][8];
         playerList = Arrays.asList(new Player(ChessColor.BLACK), new Player(ChessColor.WHITE));

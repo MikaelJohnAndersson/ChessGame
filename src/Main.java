@@ -4,7 +4,7 @@
 //TODO: Ta bort dubblering av kod
 //TODO: Lägga in mer pieces
 //TODO: Statisk utskriftsklass som sköter utskrifterna?
-//TODO: Lägg till kommentarer?
+//TODO: Lägg till menyklass?
 
 
 public class Main {

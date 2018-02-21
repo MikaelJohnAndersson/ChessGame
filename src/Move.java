@@ -20,8 +20,6 @@ public class Move{
         return Math.abs(toTile.row - fromTile.row) == Math.abs(toTile.column - fromTile.column);
     }
     public boolean isOneStepAnyInAnyDirection(){
-        return  Math.abs(toTile.row - fromTile.row) == 1 && Math.abs(toTile.column - fromTile.column) == 1
-                || Math.abs(toTile.row - fromTile.row) == 0 && Math.abs(toTile.column - fromTile.column) == 1
-                ||Math.abs(toTile.row - fromTile.row) == 1 && Math.abs(toTile.column - fromTile.column) == 0;
+        return Math.abs(toTile.row - fromTile.row) < 2 && Math.abs(toTile.column - fromTile.column) < 2;
     }
 }
