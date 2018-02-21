@@ -1,9 +1,11 @@
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class ChessGame{
 
     ChessBoard board;
     ChessGUI chessGUI;
+    boolean gameOver = false;
 
 
     public ChessGame() {
@@ -17,58 +19,45 @@ public class ChessGame{
     public void gameLoop() {
 
         Scanner scan = new Scanner(System.in);
-        boolean gameOver = false;
 
             while (!gameOver) {
 
                 for (Player player : board.playerList) {
 
                     if (!gameOver){
-                        player.initiateMoves(board);
                         player.makeMove(board);
-
                         chessGUI.renderPieces(board);
-
                         System.out.println("Press any key to continue.");
                         scan.nextLine();
-
-                        gameOver = isGameOver(player);
+                        isGameOver();
                     }
-
                 }
             }
 
-
-
+        System.out.println("WINNING PLAYER IS: " + winningPlayer());
     }
 
 
-    public boolean isGameOver(Player player) {
+    public void isGameOver() {
 
-        Boolean isKingAlive = player.pieces.stream()
-                .anyMatch(piece -> piece instanceof King);
-
-        if(!isKingAlive){
-            System.out.println(player + "'S KING IS DEAD! GAME OVER!");
-            return true;
-        }
-
-        else if (player.possibleMoves.isEmpty()) {
-
-            System.out.println(player + " cannot move. GAME OVER!");
-
-            Player player1 = board.playerList.get(0);
-            Player player2 = board.playerList.get(1);
-
-            if(player1.pieces.size() > player2.pieces.size()){
-                System.out.println(player1.chessColor + " PLAYER IS THE WINNER!");
+        for (Player player : board.playerList) {
+            if (player.pieces.stream()
+                    .noneMatch(piece -> piece instanceof King)) {
+                System.out.println(player + "'S KING IS DEAD! GAME OVER!");
+                gameOver = true;
+            } else if (player.possibleMoves(board) == null) {
+                System.out.println(player + " cannot move. GAME OVER!");
+                gameOver = true;
             }
-            else{
-                System.out.println(player2.chessColor + " PLAYER IS THE WINNER!");
-            }
-                return true;
         }
-        return false;
+    }
+
+    public Player winningPlayer(){
+
+        return board.playerList.stream()
+               .sorted(Comparator.comparingInt((Player o) -> o.pieces.stream().mapToInt((Piece p) -> p.value).sum()).reversed())
+                .findFirst()
+                .orElse(null);
     }
 
 }

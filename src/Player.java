@@ -13,10 +13,12 @@ public class Player {
 
     public void makeMove(ChessBoard board){
 
+        this.possibleMoves = possibleMoves(board);
+
         Move bestMove = possibleMoves.stream()
                 .filter(move -> move.toTile.hasEnemyPiece(this.chessColor))
-                .sorted(Comparator.comparing(move -> move.toTile.getPiece().value))
-                .reduce((first, second) -> second)
+                .sorted(Comparator.comparing((Move move) -> move.toTile.getPiece().value).reversed())
+                .findFirst()
                 .orElse(null);
 
 
@@ -39,17 +41,17 @@ public class Player {
         }
     }
 
-    public void initiateMoves(ChessBoard board){
+    @Override
+    public String toString() {
+        return this.chessColor + " PLAYER";
+    }
+
+    public List<Move> possibleMoves(ChessBoard board){
         this.possibleMoves.clear();
 
         pieces.forEach(piece -> possibleMoves.addAll(piece.possibleMoves(board)));
 
-
-    }
-
-    @Override
-    public String toString() {
-        return this.chessColor + " PLAYER";
+        return possibleMoves;
     }
 
 
